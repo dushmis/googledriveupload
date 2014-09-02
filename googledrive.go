@@ -70,16 +70,16 @@ func newfileUploadRequest(uri string, paramName, mypath string) (*http.Request, 
 		return nil, err
 	}
 	//fmt.Printf("%s\n",body)
-	fmt.Printf("%s\n\n",contentType)
+	fmt.Printf("%s\n\n", contentType)
 	req, err := http.NewRequest("POST", uri, body)
 	req.Header.Add("Content-Type", contentType)
-	
+
 	return req, err
 }
 
 func main() {
 
-	dummyfilePath := "/home/itadmin/dushyant/goprograms/googledriveupload/Melgor.java"
+	dummyfilePath := "./test.text"
 
 	authApiUrl := "https://www.google.com"
 	authResource := "/accounts/ClientLogin"
@@ -119,7 +119,7 @@ func main() {
 		uploadLocation := mapRes.Get("Location")
 		fmt.Printf("%s\n", uploadLocation)
 
-		request, err := newfileUploadRequest(uploadLocation,  "file", dummyfilePath)
+		request, err := newfileUploadRequest(uploadLocation, "file", dummyfilePath)
 		if err != nil {
 			log.Fatal(err)
 		}
