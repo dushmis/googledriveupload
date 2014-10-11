@@ -16,9 +16,9 @@ import (
 	_ "strings"
 )
 
-func connectPOST(apiUrl string, resource string, data url.Values, headerMap map[string]string) (string, http.Header, error) {
+func connectPOST(apiURL string, resource string, data url.Values, headerMap map[string]string) (string, http.Header, error) {
 
-	u, _ := url.ParseRequestURI(apiUrl)
+	u, _ := url.ParseRequestURI(apiURL)
 	u.Path = resource
 	urlStr := fmt.Sprintf("%v", u)
 
@@ -81,7 +81,7 @@ func main() {
 
 	dummyfilePath := "./test.text"
 
-	authApiUrl := "https://www.google.com"
+	authAPIURL := "https://www.google.com"
 	authResource := "/accounts/ClientLogin"
 
 	authData := url.Values{}
@@ -91,7 +91,7 @@ func main() {
 	authData.Add("service", "writely")
 	authData.Add("source", "cURL")
 
-	v, _, err := connectPOST(authApiUrl, authResource, authData, nil)
+	v, _, err := connectPOST(authAPIURL, authResource, authData, nil)
 
 	var authkey string
 	if err == nil {
@@ -110,10 +110,10 @@ func main() {
 		"Slug":           dummyfilePath,
 	}
 
-	uploadUrl := "https://docs.google.com"
+	uploadURL := "https://docs.google.com"
 	uploadResource := "/feeds/upload/create-session/default/private/full"
 
-	_, mapRes, err := connectPOST(uploadUrl, uploadResource, authData, mapLocation)
+	_, mapRes, err := connectPOST(uploadURL, uploadResource, authData, mapLocation)
 
 	if err == nil {
 		uploadLocation := mapRes.Get("Location")
